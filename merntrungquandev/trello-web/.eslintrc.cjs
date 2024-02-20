@@ -23,7 +23,7 @@ module.exports = {
       'error',
       {
         'patterns': ['@mui/*/*/*']
-      } 
+      }
     ],
 
     'no-console': 1,
