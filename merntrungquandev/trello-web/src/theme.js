@@ -46,7 +46,9 @@ const theme = extendTheme({
         // Name of the slot
         root: {
           // Some CSS
-          textTransform:'none'
+          textTransform:'none',
+          borderWidth: '1px',
+          '&:hover': { borderWidth: '2px' }
         }
       }
     },
@@ -73,6 +75,15 @@ const theme = extendTheme({
             //     borderColor: theme.palette.primary.main
             //   }
             // }
+            '& fieldset': {
+              borderWidth: '1px !important'
+            },
+            '&:hover fieldset': {
+              borderWidth: '2px !important'
+            },
+            '&:Mui-focused fieldset': {
+              borderWidth: '2px !important'
+            }
           }
         }
       }

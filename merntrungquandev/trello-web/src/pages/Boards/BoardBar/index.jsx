@@ -12,11 +12,11 @@ import Avatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import { Tooltip } from '@mui/material'
 const MENU_STYLE = {
-  bgcolor: 'white',
-  color: 'primary.main',
+  bgcolor: 'transparent',
+  color: 'white',
   paddingX: '5px',
-  '& .MuiSvgIcon-root': {
-    color: 'primary.main'
+  '.MuiSvgIcon-root': {
+    color: 'white'
   },
   '&:hover': {
     bgcolor: 'primary.50'
@@ -30,10 +30,11 @@ function BoardBar() {
       display: 'flex',
       alignItems: 'center',
       overflowX: 'auto',
-      borderTop: '1px solid #2980b9',
+      borderBottom: '1px solid white',
       justifyContent: 'space-between', // tach box 1 cai trai 1  cai phai
       gap: 2,
-      paddingX: 2
+      paddingX: 2,
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : 'primary.main')
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Chip sx={MENU_STYLE} icon={<DashboardIcon />} label="QAchemistry Mern"
@@ -59,13 +60,15 @@ function BoardBar() {
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Button variant="outlined" endIcon={<PersonAddIcon />}>Invite </Button>
+        <Button variant="outlined" endIcon={<PersonAddIcon />} sx={{ color: 'white', borderColor: 'white', '&:hover':{ borderColor: 'white' } }}>Invite </Button>
         <AvatarGroup max={4}
           sx={{
+            gap: '10px',
             '& .MuiAvatar-root ': {
               width: 30,
               height: 30,
-              fontSize: 16
+              fontSize: 16,
+              border: 'none'
             }
           }}
         >

@@ -1,4 +1,4 @@
-
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import ModeSelect from '../../components/ModeSelect'
 import AppsIcon from '@mui/icons-material/Apps'
@@ -16,7 +16,13 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import Tooltip from '@mui/material/Tooltip'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Profiles from './Menus/Profiles'
+import InputAdornment from '@mui/material/InputAdornment'
+import CloseIcon from '@mui/icons-material/Close'
+import SearchIcon from '@mui/icons-material/Search'
+
+
 function AppBar() {
+  const [searchValue, setSearchValue] = useState('')
   return (
     <Box sx={{
       width: '100%',
@@ -27,7 +33,7 @@ function AppBar() {
       gap: 2,
       overflowX: 'auto',
       paddingX: 2,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50' : 'primary.dark')
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0')
 
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -51,16 +57,39 @@ function AppBar() {
 
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <TextField id="outlined-search" label="Search..." type="search" size='small' sx={{ minWidth: 120 }} />
+        <TextField
+          id="outlined-search"
+          label="Search..."
+          type="text"
+          size='small'
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          sx={{
+            minWidth: 120, maxWidth: 200, '& label': { color: 'white' }, '& input': { color: 'white' }, '& label.Mui-focused': { color: 'white' }
+            , '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: 'white' }, '&:hover fieldset': { borderColor: 'white' }, '&.Mui-focused fieldset': { borderColor: 'white' } }
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon sx={{ color: 'white ' }} />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <CloseIcon fontSize='small' sx={{ color: searchValue ? 'white' : 'transparent', cursor: 'pointer' }}
+                onClick={() => setSearchValue('')}
+              />
+            )
+          }}
+        />
         <ModeSelect />
         <Tooltip title="Notification">
-          <Badge color="secondary" variant="dot" sx={{ cursor: 'pointer' }}>
-            <NotificationsNoneIcon sx={{ color: 'primary.main' }} />
+          <Badge color="warning" variant="dot" sx={{ cursor: 'pointer' }}>
+            <NotificationsNoneIcon sx={{ color: 'white' }} />
           </Badge>
         </Tooltip>
 
         <Tooltip title="Help">
-          <HelpOutlineIcon sx={{ cursor: 'pointer', color: 'primary.main' }} />
+          <HelpOutlineIcon sx={{ cursor: 'pointer', color: 'white' }} />
         </Tooltip>
         <Profiles />
       </Box>
